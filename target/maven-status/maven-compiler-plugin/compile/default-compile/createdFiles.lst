@@ -1,0 +1,12 @@
+zara\capitole\service\MapperService.class
+zara\capitole\config\JpaDatabaseConfig.class
+zara\capitole\model\dto\ProductDTO$ProductDTOBuilder.class
+zara\capitole\model\Product$ProductBuilder.class
+zara\capitole\service\ProductService.class
+zara\capitole\model\dto\ProductDTO.class
+zara\capitole\service\impl\MapperServiceImpl.class
+zara\capitole\model\Product.class
+zara\capitole\CapitoleApplication.class
+zara\capitole\repository\ProductRepository.class
+zara\capitole\controller\ProductController.class
+zara\capitole\service\impl\ProductServiceImpl.class
