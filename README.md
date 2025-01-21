@@ -31,8 +31,6 @@ And use the path you have initialized the program with, which should be: http://
 
 To see the documentation of the apis you can check them in the swagger:
 http://localhost:8082/swagger-ui/index.html
-
-I leave a collection of postman in the folder /postman
 ```
 
 
