@@ -1,7 +1,6 @@
 package test.zara.capitole.controller;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -16,14 +15,13 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import zara.capitole.CapitoleApplication;
-import zara.capitole.model.dto.ProductDTO;
+import zara.capitole.domain.model.dto.ProductDTO;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -35,7 +33,6 @@ public class ProductControllerTest {
 
     @Autowired
     private WebApplicationContext webApplicationContext;
-
 
     @BeforeEach
     public void setup() throws Exception {

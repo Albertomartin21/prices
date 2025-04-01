@@ -1,6 +1,5 @@
 package test.zara.capitole.service.impl;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
@@ -14,7 +13,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -22,11 +20,11 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import zara.capitole.model.Product;
-import zara.capitole.repository.ProductRepository;
-import zara.capitole.service.MapperService;
-import zara.capitole.service.ProductService;
-import zara.capitole.service.impl.ProductServiceImpl;
+import zara.capitole.application.service.MapperService;
+import zara.capitole.application.service.ProductService;
+import zara.capitole.application.service.impl.ProductServiceImpl;
+import zara.capitole.domain.model.Product;
+import zara.capitole.domain.repository.ProductPort;
 
 @ExtendWith(MockitoExtension.class)
 public class ProductServiceImplTest {
@@ -34,7 +32,7 @@ public class ProductServiceImplTest {
     private ProductService productService;
 
     @Mock 
-    private ProductRepository productRepository;
+    private ProductPort productPort;
 
     @Mock
     private MapperService mapperService;
@@ -43,18 +41,18 @@ public class ProductServiceImplTest {
 
     @BeforeEach
     void setUp(){
-        productService = new ProductServiceImpl(productRepository,mapperService);
+        productService = new ProductServiceImpl(productPort,mapperService);
     }
 
     @ParameterizedTest
     @MethodSource("providerParameters")
     void shouldFilterProducts(String branchId, String date, String productId, int numProducts) {
         List<Product> listRepository = getAllProducts();
-        when(productRepository.findProductsByBrandIdAndProductId(branchId, productId)).thenReturn(listRepository);
+        when(productPort.getProductsByBrandIdAndProductId(branchId, productId)).thenReturn(listRepository);
         var result = productService.getListProductFilteredByActualTimeProuctIdAndBrandId(date,productId,branchId);
         
         assertNotNull(result);
-        verify(productRepository).findProductsByBrandIdAndProductId(branchId, productId);
+        verify(productPort).getProductsByBrandIdAndProductId(branchId, productId);
         verify(mapperService, times(numProducts)).mapProductToProductDTO(any(Product.class), any(LocalDateTime.class));
     }
 
